@@ -1,0 +1,28 @@
+{
+
+  "description": "Generate eCarte Bleue numbers in one click.",
+  "manifest_version": 2,
+  "name": "eCarte Bleue Extension",
+  "version": "1.0",
+  "homepage_url": "https://github.com/raphaelyancey/ecartebleue-webext",
+  "icons": {
+    "48": "icons/ecb-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/"],
+      "js": ["index.js"]
+    }
+  ],
+
+  "permissions": [
+      "<all_urls>"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/ecb-48.png",
+    "default_title": "eCarte Bleue",
+    "default_popup": "popup/generate.html"
+  }
+}
