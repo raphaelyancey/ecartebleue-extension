@@ -5,9 +5,14 @@
   <title>eCarte Bleue</title>
 </head>
 <body>
-  <button>Generate</button>
-  <div id="result"></div>
-  <script src="../node_modules/axios/dist/axios.min.js"></script>
+  <button id="generate">Generate</button>
+  <small id="error"></small>
+  <div id="result">
+    <p>CC : <input type="text" id="cc" value=""></p>
+    <p>EXP : <input type="text" id="exp" value=""></p>
+    <p>CCV : <input type="text" id="ccv" value=""></p>
+  </div>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="generate.js"></script>
 </body>
 </html>
