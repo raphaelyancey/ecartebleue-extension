@@ -17,15 +17,14 @@ generateButton.click(function() {
   pristineState();
   $.post(API_URL + '/generate', { p: p })
   .done(function(res) {
-    console.log('••• res', res);
     ccElement.val(res.cc);
     expElement.val(res.exp.join('/'));
     ccvElement.val(res.ccv);
   })
   .fail(function(err) {
-    if(err.error) {
-      errorElement.html(err.error)
+    if(err.data.error) {
+      errorElement.html(err.data.error)
       errorElement.show();
-    } else console.error(err);
+    }
   });
 });
