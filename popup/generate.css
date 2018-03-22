@@ -1,3 +1,22 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  font-color: #333;
+}
+
+button#generate {
+  width: 100%;
+  padding: 10px 5px;
+  text-transform: uppercase;
+  background: #333;
+  color: white;
+  border-radius: 3px;
+  border: 0;
+  border-bottom: 2px solid black;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
 #error {
   display: none;
 }
