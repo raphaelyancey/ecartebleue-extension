@@ -17,12 +17,17 @@
   ],
 
   "permissions": [
-      "<all_urls>"
+      "<all_urls>",
+      "storage"
   ],
 
   "browser_action": {
     "default_icon": "icons/ecb-48.png",
     "default_title": "eCarte Bleue",
     "default_popup": "popup/generate.html"
+  },
+
+  "options_ui": {
+    "page" :"options/options.html"
   }
 }

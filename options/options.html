@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h1>Settings</h1>
+  <div class="group">
+    <label for="username">eCarte Bleue Username</label>
+    <input type="text" name="username" id="username">
+  </div>
+
+  <div class="group">
+    <label for="password">eCarte Bleue Password</label>
+    <input type="password" name="password" id="password">
+  </div>
+
+  <div class="group">
+    <label for="host">API Host</label>
+    <input type="text" name="host" id="host">
+  </div>
+
+  <button id="save">Save settings</button>
+  <small id="result"></small>
+
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

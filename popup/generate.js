@@ -4,6 +4,7 @@ var p = btoa(JSON.stringify(credentials));
 
 var generateButton = $('button#generate');
 var generatedForm = $('#generated');
+var settingsLink = $('#settings');
 var errorElement = $('#error');
 var ccElement = $('#cc');
 var expElement = $('#exp');
@@ -46,4 +47,8 @@ generateButton.click(function() {
   .always(function() {
     loading(false);
   });
+});
+
+settingsLink.click(function() {
+  browser.runtime.openOptionsPage();
 });
