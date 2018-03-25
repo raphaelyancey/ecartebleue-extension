@@ -43,3 +43,15 @@ button {
   font-weight: bold;
   text-align: center;
 }
+
+hr {
+  height: 1px;
+  background: lightgrey;
+  border: 0;
+  margin: 15px 0;
+}
+
+#clear {
+  text-align: center;
+  margin-top: 5px;
+}
