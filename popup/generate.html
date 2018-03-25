@@ -6,12 +6,32 @@
   <link rel="stylesheet" href="generate.css">
 </head>
 <body>
-  <button id="generate">Generate</button>
+  <div id="amount">
+    <span>Amount</span>
+    <input type="text" id="amount_value">
+    <span>€</span>
+  </div>
+  <button id="generate">
+    <span class="ready">Generate</span>
+    <span class="loading">Generating...</span>
+  </button>
   <small id="error"></small>
+  <hr>
   <div id="result">
-    <p>CC : <input type="text" id="cc" value=""></p>
-    <p>EXP : <input type="text" id="exp" value=""></p>
-    <p>CCV : <input type="text" id="ccv" value=""></p>
+    <div class="group">
+      <label>Card number</label>
+      <input type="text" id="cc" value="">
+    </div>
+    <div id="exp_ccv">
+      <div class="group" id="exp_group">
+        <label>Exp. date</label>
+        <input type="text" id="exp" value="">
+      </div>
+      <div class="group" id="ccv_group">
+        <label>CCV</label>
+        <input type="text" id="ccv" value="">
+      </div>
+    </div>
   </div>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="generate.js"></script>
