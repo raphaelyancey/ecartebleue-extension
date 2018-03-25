@@ -1,5 +1,5 @@
 var API_URL = "http://localhost:3000";
-***REMOVED***
+var credentials = ['FCPRSQBX', 'm3kxkRw7'];
 var p = btoa(JSON.stringify(credentials));
 
 var generateButton = $('button#generate');
