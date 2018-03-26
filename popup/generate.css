@@ -24,7 +24,7 @@ button#generate:disabled {
   border-color: #454545;
 }
 
-input[type="text"] {
+input {
   background: none;
   border: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 0.9rem;
@@ -33,23 +33,17 @@ input[type="text"] {
   margin: 0;
 }
 
-#amount {
+.input-group {
   display: flex;
   margin-bottom: 5px;
   align-items: center;
   justify-content: center;
 }
 
-#amount input {
+.input-group input {
   text-align: center;
   width: 40px;
   flex-grow: 1;
-}
-
-#amount span {
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin: 0 5px 0 5px;
 }
 
 #error {

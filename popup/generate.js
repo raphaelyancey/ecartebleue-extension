@@ -26,9 +26,24 @@ function loading(state) {
 }
 
 generateButton.click(function() {
+  
   pristineState();
   loading(true);
-  $.post(API_URL + '/generate', { p: btoa(JSON.stringify(credentials)) })
+
+  var amount = $('#amount_value').val();
+  var password = $('#password').val();
+
+  if(!amount || !password) {
+    errorElement.html("Please fill in the amount and your eCarte Bleue password.")
+    errorElement.show();
+    loading(false);
+    return;
+  }
+
+  credentials.push(password);
+  credentials = btoa(JSON.stringify(credentials));
+
+  $.post(API_URL + '/generate', { p: credentials, a: amount })
   .done(function(res) {
     ccElement.val(res.cc);
     expElement.val(res.exp.join('/'));
@@ -47,6 +62,7 @@ generateButton.click(function() {
   .always(function() {
     loading(false);
   });
+
 });
 
 settingsLink.click(function() {
@@ -54,9 +70,9 @@ settingsLink.click(function() {
 });
 
 function loadCredentials() {
-  browser.storage.local.get(['username', 'password', 'host'])
+  browser.storage.local.get(['username', 'host'])
   .then(function(items) {
-    credentials = [items.username, items.password];
+    credentials = [items.username];
     API_URL = items.host;
     console.info('Loaded settings.');
     generateButton.attr('disabled', false);

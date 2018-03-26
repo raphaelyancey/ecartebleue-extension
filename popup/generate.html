@@ -7,10 +7,12 @@
 </head>
 <body>
   
-  <div id="amount">
-    <span>Amount</span>
-    <input type="text" id="amount_value">
-    <span>€</span>
+  <div class="input-group" id="amount">
+    <input type="number" step="0.01" id="amount_value" placeholder="Amount (€)">
+  </div>
+
+  <div class="input-group">
+    <input type="password" id="password" placeholder="eCarte Bleue password">
   </div>
   
   <button id="generate">
