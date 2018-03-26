@@ -1,4 +1,4 @@
-var API_URL = "http://localhost:3000";
+var API_URL = null;
 var credentials = null;
 
 var generateButton = $('button#generate');
@@ -8,6 +8,8 @@ var errorElement = $('#error');
 var ccElement = $('#cc');
 var expElement = $('#exp');
 var ccvElement = $('#ccv');
+var amountInput = $('#amount_value');
+var passwordInput = $('#password');
 
 function pristineState() {
   errorElement.hide();
@@ -30,9 +32,16 @@ generateButton.click(function() {
   pristineState();
   loading(true);
 
-  var amount = $('#amount_value').val();
-  var password = $('#password').val();
+  var amount = amountInput.val();
+  var password = passwordInput.val();
 
+  if(!API_URL || !credentials) {
+    errorElement.html("Please fill in the settings before generating.")
+    errorElement.show();
+    loading(false);
+    return; 
+  }
+  
   if(!amount || !password) {
     errorElement.html("Please fill in the amount and your eCarte Bleue password.")
     errorElement.show();
@@ -45,9 +54,22 @@ generateButton.click(function() {
 
   $.post(API_URL + '/generate', { p: credentials, a: amount })
   .done(function(res) {
+
     ccElement.val(res.cc);
     expElement.val(res.exp.join('/'));
     ccvElement.val(res.ccv);
+    
+    // Save auto-destructive state in case the popup gets dismissed
+    browser.runtime.sendMessage({
+      id: "store",
+      data: {
+        amount: amount,
+        cc: res.cc,
+        exp: res.exp,
+        ccv: res.ccv
+      }
+    });
+
   })
   .fail(function(err) {
     console.error(err);
@@ -69,12 +91,32 @@ settingsLink.click(function() {
   browser.runtime.openOptionsPage();
 });
 
-function loadCredentials() {
-  browser.storage.local.get(['username', 'host'])
+// Store amount at every change
+amountInput.change(function() {
+  console.log('foobar');
+  browser.runtime.sendMessage({
+    id: "store",
+    data: {
+      amount: amount
+    }
+  });
+});
+
+function load() {
+  browser.storage.local.get(['username', 'host', 'last_state'])
   .then(function(items) {
-    credentials = [items.username];
+    console.info('Loaded settings.', items);
+    credentials = [items.username]; // The password will be pushed after
     API_URL = items.host;
-    console.info('Loaded settings.');
+    
+    if(items.last_state) {
+      var s = items.last_state;
+      if('amount' in s) amountInput.val(s.amount);
+      if('cc' in s) ccElement.val(s.cc);
+      if('exp' in s) expElement.val(s.exp);
+      if('ccv' in s) ccvElement.val(s.ccv);
+    }
+
     generateButton.attr('disabled', false);
   })
   .catch(function() {
@@ -89,4 +131,4 @@ function loadCredentials() {
 
 errorElement.hide();
 generateButton.attr('disabled', true);
-loadCredentials();
+load();

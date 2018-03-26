@@ -3,18 +3,21 @@ var clearButton = $('#clear');
 var usernameInput = $('#username');
 var passwordInput = $('#password');
 var hostInput = $('#host');
+var countdownInput = $('#countdown');
 var result = $('#result');
 
-browser.storage.local.get(['username', 'password', 'host'])
+browser.storage.local.get(['username', 'host', 'clear_state_countdown'])
 .then(function(items) {
   usernameInput.val(items.username);
   hostInput.val(items.host);
+  countdownInput.val(items.clear_state_countdown);
 });
 
 saveButton.click(function() {
   browser.storage.local.set({
     username: usernameInput.val(),
-    host: hostInput.val() 
+    host: hostInput.val(),
+    clear_state_countdown: countdownInput.val()
   })
   .then(function() {
     result.html('Saved settings (' + (new Date()).toISOString() + ')')
