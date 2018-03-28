@@ -5,8 +5,8 @@ function storageCountdown() {
   browser.storage.local.get("clear_state_countdown")
   .then(function(items) {
     
-    if('clear_state_countdown' in items) s = 10*1000;
-    else s = items.clear_state_countdown*1000; // Seconds to milliseconds
+    if(!('clear_state_countdown' in items)) s = 10*1000;
+    else s = parseInt(items.clear_state_countdown)*1000; // Seconds to milliseconds
     
     if(currentCountdown) {
       window.clearTimeout(currentCountdown);

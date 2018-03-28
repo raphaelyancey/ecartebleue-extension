@@ -104,7 +104,7 @@ amountInput.bind('keyup mouseup', function () {
 });
 
 function load() {
-  browser.storage.local.get(['username', 'host', 'last_state'])
+  browser.storage.local.get()
   .then(function(items) {
     console.info('Loaded settings.', items);
     credentials = [items.username]; // The password will be pushed after
