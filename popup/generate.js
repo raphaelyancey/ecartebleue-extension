@@ -92,8 +92,9 @@ settingsLink.click(function() {
 });
 
 // Store amount at every change
-amountInput.change(function() {
-  console.log('foobar');
+amountInput.bind('keyup mouseup', function () {
+  var amount = amountInput.val();
+  if(!amount) return false;
   browser.runtime.sendMessage({
     id: "store",
     data: {

@@ -31,6 +31,9 @@ function handleMessage(message, sender, answer) {
   if(!('id' in message)) return false;
   
   if(message.id == 'store') {
+
+    console.log('Storing new state.');
+
     if('data' in message) {
       browser.storage.local.set({
         last_state: {
@@ -41,6 +44,7 @@ function handleMessage(message, sender, answer) {
         }
       })
       .then(storageCountdown);
+
     } else console.error('No data in message.');
   }
 
@@ -53,6 +57,9 @@ function handleMessage(message, sender, answer) {
       console.info("No state was stored.");
     });
   }
+
+  return true;
 }
 
+console.log('Loaded background script.');
 browser.runtime.onMessage.addListener(handleMessage);
