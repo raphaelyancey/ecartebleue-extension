@@ -1,3 +1,103 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  font-color: #333;
+  padding: 5px;
+  max-width: 200px;
+  width: 200px;
+}
+
+button#generate {
+  width: 100%;
+  padding: 10px 5px;
+  background: #1273bf;
+  color: white;
+  border-radius: 3px;
+  border: 0;
+  border-bottom: 2px solid #084271;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+button#generate:disabled {
+  background: #6e6e6e;
+  border-color: #454545;
+}
+
+input {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  border-radius: 2px;
+  padding: 5px;
+  margin: 0;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group input {
+  text-align: center;
+  width: 40px;
+  flex-grow: 1;
+}
+
 #error {
+  text-align: center;
+  display: block;
+  max-width: 200px;
+  color: #c60000;
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+#generate .loading {
   display: none;
+}
+
+hr {
+  height: 1px;
+  background: lightgrey;
+  border: 0;
+  margin: 15px 0;
+}
+
+.group {
+  margin-bottom: 8px;
+}
+
+.group label {
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+#exp_ccv {
+  display: flex;
+  justify-content: space-between;
+}
+
+#exp_group input {
+  width: 70px;
+}
+
+#ccv_group input {
+  width: 70px;
+}
+
+#result {
+  color: grey;
+}
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  font-size: 0.7rem;
+  text-align: right;
+  color: grey;
 }
