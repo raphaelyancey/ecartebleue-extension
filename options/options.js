@@ -14,10 +14,11 @@ browser.storage.local.get(['username', 'host', 'clear_state_countdown'])
 });
 
 saveButton.click(function() {
+  if(!usernameInput.val() || !hostInput.val() || !countdownInput.val()) return false;
   browser.storage.local.set({
     username: usernameInput.val(),
     host: hostInput.val(),
-    clear_state_countdown: countdownInput.val()
+    clear_state_countdown: parseInt(countdownInput.val())
   })
   .then(function() {
     result.html('Saved settings (' + (new Date()).toISOString() + ')')

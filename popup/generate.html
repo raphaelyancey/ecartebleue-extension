@@ -8,11 +8,11 @@
 <body>
   
   <div class="input-group" id="amount">
-    <input type="number" step="0.01" id="amount_value" placeholder="Amount (€)">
+    <input type="number" step="0.01" id="amount_value" placeholder="Amount (€)" required>
   </div>
 
   <div class="input-group">
-    <input type="password" id="password" placeholder="eCarte Bleue password">
+    <input type="password" id="password" placeholder="eCarte Bleue password" required>
   </div>
   
   <button id="generate">
@@ -44,7 +44,8 @@
   <hr>
 
   <div id="footer">
-    <a href="#" id="settings">Settings</a>
+    <div><a href="#" id="settings">Settings</a></div>
+    <div>Bank data clears after <span id="clear_state_countdown"></span>s</div>
   </div>
 
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>

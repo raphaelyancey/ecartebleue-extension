@@ -39,14 +39,14 @@ generateButton.click(function() {
     errorElement.html("Please fill in the settings before generating.")
     errorElement.show();
     loading(false);
-    return; 
+    return false; 
   }
   
   if(!amount || !password) {
     errorElement.html("Please fill in the amount and your eCarte Bleue password.")
     errorElement.show();
     loading(false);
-    return;
+    return false;
   }
 
   credentials.push(password);
@@ -106,15 +106,22 @@ amountInput.bind('keyup mouseup', function () {
 function load() {
   browser.storage.local.get()
   .then(function(items) {
+
     console.info('Loaded settings.', items);
+
     credentials = [items.username]; // The password will be pushed after
     API_URL = items.host;
+
+    if(items.clear_state_countdown) {
+      $('#clear_state_countdown').show();
+      $('#clear_state_countdown').html(items.clear_state_countdown);
+    }
     
     if(items.last_state) {
       var s = items.last_state;
       if('amount' in s) amountInput.val(s.amount);
       if('cc' in s) ccElement.val(s.cc);
-      if('exp' in s) expElement.val(s.exp);
+      if('exp' in s) expElement.val(s.exp.join('/'));
       if('ccv' in s) ccvElement.val(s.ccv);
     }
 
